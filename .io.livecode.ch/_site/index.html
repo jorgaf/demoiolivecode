@@ -1,0 +1,46 @@
+{% extends "base_livecode.html" %}
+
+{% block title %}Variables comunes en Java{% endblock %}
+
+{% block content %}
+<h2>Core miniKanren</h2>
+<p>
+Las variables más comunes en Java:
+   <ul>
+      <li>Enteros: representados con int</li>
+      <li>Reales: representados por <em>double</em></li>
+      <li>Texto: representados por <em>String</em></li>
+   </ul>
+</p>
+
+<div class="live norun" id="ex1">
+class Main {
+  public static void main(String[] args) {
+    int a = 3;
+    double c = 10.2 ;
+    String nombre = "Jorge";
+    
+    System.out.printf("a = %d, c = %f, nombre = %s\n", a, c, nombre);
+  }
+}
+</div>
+<div class="live" id="run1" data-lib="ex1" data-mode="text/x-sh">
+ #!/bin/bash
+ set -e -v
+
+### PICK VERSION
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export PATH=$JAVA_HOME/bin:$PATH
+
+### CHECK VERSION
+java -version
+
+### COMPILE
+cat $1 >Unsound.java
+javac Main.java
+
+### RUN
+java Main
+</div>
+
+{% endblock %}
