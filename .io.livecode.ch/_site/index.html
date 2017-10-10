@@ -1,0 +1,58 @@
+{% extends "base_livecode.html" %}
+
+{% block title %}Variables comunes en Java 9{% endblock %}
+
+{% block content %}
+<h2>Un ejemplo</h2>
+<p>
+Las variables más comunes en Java:
+   <ul>
+      <li>Enteros: representados con <em>int</em></li>
+      <li>Reales: representados por <em>double</em></li>
+      <li>Texto: representados por <em>String</em></li>
+   </ul>
+</p>
+
+<div class="live norun" id="ex1">
+int a = 3;
+double c = 10.2 ;
+String nombre = "@jorgaf";
+
+System.out.printf("a = %d, c = %f, nombre = %s\n", a, c, nombre);
+
+public class DemoClass {
+   public void saludar(String nombre) {
+      System.out.printf("Hola %s\n", nombre);
+   }
+}
+
+new DemoClass().saludar(nombre);
+
+public int getUno() {
+   return 1;
+}
+
+public int getDos() {
+   return 2;
+}
+
+a = getUno() + getDos();
+System.out.println(a);
+</div>
+<div class="live" id="run1" data-lib="ex1" data-mode="text/x-sh">
+ #!/bin/bash
+ set -e -v
+
+### PICK VERSION
+export JAVA_HOME=/usr/lib/jvm/java-9-oracle
+export PATH=$JAVA_HOME/bin:$PATH
+
+### CONFIG
+cat $1 >Main.jsh
+echo -e "\n/exit" >> Main.jsh
+
+### RUN
+jshell Main.jsh
+</div>
+
+{% endblock %}
